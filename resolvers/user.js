@@ -30,8 +30,12 @@ const userResolver = {
   },
   Mutation: {
     createUser: async (_, { input }, { models }) => {
-      console.log(models, input);
-      return await models.User.createUser(input);
+      const user = await models.User.createUser(input);
+      return {
+        message: "User created successfully",
+        status: true,
+        user,
+      };
     },
     login: async (_, { input }, { models }) => {
       console.log("reached");
