@@ -56,8 +56,8 @@ mongoose
   )
   .then((res) => {
     console.log("MongoDB Connected");
-    app.listen(4000, () => {
-      console.log("🚀 Server ready at http://localhost:4000/graphql");
+    app.listen(4100, () => {
+      console.log("🚀 Server ready at http://localhost:4100/graphql");
     });
   })
   .catch((err) => {

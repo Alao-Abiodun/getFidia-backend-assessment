@@ -67,12 +67,13 @@ User.createUser = async ({
   country,
 }) => {
   try {
-    const regex =
-      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+    console.log(email);
+    const regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
     if (!regex.test(email)) {
       throw new UserInputError("Invalid email address");
     }
     const userByEmail = await User.findOne({ email: email });
+    console.log(userByEmail);
     if (userByEmail) {
       throw new AuthenticationError(
         "User already registered with the email address"
@@ -96,6 +97,7 @@ User.createUser = async ({
       mobile_number,
       country,
     });
+    console.log(user);
     const config = {
       to: email,
       subject: "Registration Successful",
@@ -121,6 +123,7 @@ User.createUser = async ({
     console.log(await sendMail(emailConfig));
     await token.save();
     await user.save();
+    console.log(user);
     return user;
     // const dataInfo = { message: "Usr created successfully", user };
     // return successResMsg(res, 201, dataInfo);
