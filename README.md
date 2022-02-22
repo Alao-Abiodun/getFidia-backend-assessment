@@ -1,6 +1,6 @@
 ### User Authorization and Authentication
 
-# Technologies Use
+# Technologies Used
 
 - NodeJS
 - Express

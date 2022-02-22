@@ -26,6 +26,7 @@ describe("getUser", () => {
 
     done();
   });
+
   it("Should throw if not authenticated", async (done) => {
     const newUser = new User({
       name: "alao",
@@ -43,6 +44,7 @@ describe("getUser", () => {
 
     done();
   });
+
   it("Should throw if not right user", async (done) => {
     const newUser = new User({
       name: "alao",
@@ -57,6 +59,19 @@ describe("getUser", () => {
     await expect(
       resolvers.Query.getUser({}, { id: newUser.id }, { userId: "123" })
     ).rejects.toThrow(/own datas/);
+
+    done();
+  });
+
+  it("should fetch all the list of registered users", async (done) => {
+    const registeredUser = {
+      email: "abiodu@gmail.com",
+      password: "plop",
+    };
+
+    await expect(resolvers.Query.getUser({}, {}, {})).rejects.toThrow(
+      "/user login/"
+    );
 
     done();
   });
